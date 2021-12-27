@@ -1,0 +1,40 @@
+@use '/src/styles/variables' as *;
+@use '/src/styles/mixings' as *;
+@use '/src/styles/animations' as *;
+
+.container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem 5rem 3rem;
+  z-index: 9999;
+  @include breakpoints(mobile) {
+    display: none;
+  }
+  &__h2 {
+    font-size: 16px;
+    color: #171a1b;
+  }
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  &__item {
+    margin-left: 3rem;
+    font-size: 16px;
+  }
+  &__item:hover {
+    transform: translate(0%, -30%) scale3d(1.1, 1.1, 1);
+  }
+}
+
+.fillDiv {
+  width: 100%;
+  height: 1px;
+  background-color: #171a1b;
+}

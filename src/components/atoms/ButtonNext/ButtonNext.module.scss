@@ -1,0 +1,28 @@
+@use '/src/styles/variables' as *;
+@use '/src/styles/mixings' as *;
+@use '/src/styles/animations' as *;
+
+.button {
+  border: none;
+  position: absolute;
+  top: 40%;
+  background-color: transparent;
+  z-index: 9999;
+  @include breakpoints(largescreens) {
+    right: 1%;
+  }
+  @include breakpoints(desktop) {
+    right: 6%;
+  }
+  @include breakpoints(laptop) {
+    right: 14%;
+  }
+  @include breakpoints(mobile) {
+    top: 86%;
+    right: 6%;
+  }
+  @include breakpoints(tablet) {
+    top: 40%;
+    right: 0;
+  }
+}

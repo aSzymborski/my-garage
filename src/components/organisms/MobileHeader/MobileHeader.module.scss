@@ -1,0 +1,28 @@
+@use '/src/styles/variables' as *;
+@use '/src/styles/mixings' as *;
+@use '/src/styles/animations' as *;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  @include breakpoints(laptop) {
+    display: none;
+  }
+  @include breakpoints(desktop) {
+    display: none;
+  }
+  @include breakpoints(largescreens) {
+    display: none;
+  }
+
+  &__h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1;
+    inline-size: 1rem;
+  }
+}
