@@ -7,15 +7,18 @@ import { WishListPage } from '../WishListPage/WishListPage';
 
 import styles from 'components/templates/MainTemplate/MainTemplate.module.scss';
 import { MobileNavigation } from 'components/organisms/MobileNavigation/MobileNavigation';
+import { CarsProvider } from 'providers/CarsProvider';
 export const MainTemplate = () => {
   return (
     <div className={styles.container}>
       <Navigation />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cars" element={<CarsPage />} />
-        <Route path="/wishlist" element={<WishListPage />} />
-      </Routes>
+      <CarsProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cars" element={<CarsPage />} />
+          <Route path="/wishlist" element={<WishListPage />} />
+        </Routes>
+      </CarsProvider>
       <MobileNavigation />
     </div>
   );

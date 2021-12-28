@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.24.0",
     "firebase": "^9.6.1",
     "node-sass": "^7.0.0",
     "react": "^17.0.2",
@@ -19,10 +21,10 @@
     "web-vitals": "^2.1.2"
   },
   "lint-staged": {
-       "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-         "prettier --write"
-       ]
-     },
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -30,10 +32,10 @@
     "eject": "react-scripts eject"
   },
   "husky": {
-        "hooks": {
-          "pre-commit": "lint-staged"
-        }
-      },
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",

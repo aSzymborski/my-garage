@@ -1,29 +1,47 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CarsContext } from 'providers/CarsProvider';
 
-import currentcar from 'assets/lambo.jpg';
 import styles from 'components/organisms/CarsPageCarsList/CarsPageCarsList.module.scss';
 export const CarsPageCarsList = () => {
+  const context = useContext(CarsContext);
   return (
     <section className={styles.container}>
       <ul className={styles.list}>
-        <li className={styles.list__item}>
-          <img className={styles.img} src={currentcar} alt="car" />
-        </li>
-        <li className={styles.list__item}>
-          <img className={styles.img} src={currentcar} alt="car" />
-        </li>
-        <li className={styles.list__item}>
-          <img className={styles.img} src={currentcar} alt="car" />
-        </li>
-        <li className={styles.list__item}>
-          <img className={styles.img} src={currentcar} alt="car" />
-        </li>
-        <li className={styles.list__item}>
-          <img className={styles.img} src={currentcar} alt="car" />
-        </li>
-        <li className={styles.list__item}>
-          <img className={styles.img} src={currentcar} alt="car" />
-        </li>
+        {context.cars.map(
+          ({
+            id,
+            model,
+            year,
+            oilengine,
+            oilgearbox,
+            breakfluid,
+            airfilter,
+            fuelfilter,
+            cabinfilter,
+            photo,
+          }) => (
+            <li
+              key={id}
+              className={styles.list__item}
+              onMouseOver={() =>
+                context.handleShowCar(
+                  id,
+                  model,
+                  year,
+                  oilengine,
+                  oilgearbox,
+                  breakfluid,
+                  airfilter,
+                  fuelfilter,
+                  cabinfilter,
+                  photo
+                )
+              }
+            >
+              <img className={styles.img} src={photo.url} alt={model} />
+            </li>
+          )
+        )}
       </ul>
     </section>
   );
