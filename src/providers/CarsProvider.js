@@ -5,25 +5,18 @@ export const CarsContext = React.createContext({
   cars: [],
   currentCar: {},
   handleShowCar: () => {},
+  indexCenterCar: '',
+  indexPrevCar: '',
+  indexNextCar: '',
 });
 const API_TOKEN = '2ff6e0302d3bde8a84b0fe0e42e7a0';
 
-const initialState = {
-  id: '1',
-  model: 'Lamborghini',
-  year: '2017',
-  oilengine: '34.289',
-  oilgearbox: '22.423',
-  breakfluid: '11.458',
-  airfilter: '7.543',
-  fuelfilter: '11.458',
-  cabinfilter: '12.399',
-  photo: '',
-};
-
 export const CarsProvider = ({ children }) => {
   const [cars, setCars] = useState([]);
-  const [currentCar, setCurrentCar] = useState(initialState);
+  const [currentCar, setCurrentCar] = useState();
+  const [indexCenterCar, setIndexCenterCar] = useState(0);
+  const [indexPrevCar, setIndexPrevCar] = useState(0);
+  const [indexNextCar, setIndexNextCar] = useState(0);
 
   useEffect(() => {
     axios
@@ -56,6 +49,18 @@ export const CarsProvider = ({ children }) => {
       )
       .then(({ data: { data } }) => {
         setCars(data.allCars);
+        setCurrentCar({
+          id: data.allCars[0].id,
+          model: data.allCars[0].model,
+          year: data.allCars[0].year,
+          oilengine: data.allCars[0].oilengine,
+          oilgearbox: data.allCars[0].oilgearbox,
+          breakfluid: data.allCars[0].breakfluid,
+          airfilter: data.allCars[0].airfilter,
+          fuelfilter: data.allCars[0].fuelfilter,
+          cabinfilter: data.allCars[0].cabinfilter,
+          photo: data.allCars[0].photo,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -90,7 +95,16 @@ export const CarsProvider = ({ children }) => {
     setCurrentCar(newCar);
   };
   return (
-    <CarsContext.Provider value={{ cars, handleShowCar, currentCar }}>
+    <CarsContext.Provider
+      value={{
+        cars,
+        handleShowCar,
+        currentCar,
+        indexCenterCar,
+        indexNextCar,
+        indexPrevCar,
+      }}
+    >
       {children}
     </CarsContext.Provider>
   );
