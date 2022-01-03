@@ -4,30 +4,47 @@ import { ButtonPrev } from 'components/atoms/ButtonPrev/ButtonPrev';
 import { ButtonNext } from 'components/atoms/ButtonNext/ButtonNext';
 import { CarsContext } from 'providers/CarsProvider';
 
-import currentcar from 'assets/lambo.jpg';
 import styles from 'components/organisms/HomePageCurrentPhoto/HomePageCurrentPhoto.module.scss';
+import { Link } from 'react-router-dom';
 export const HomePageCurrentPhoto = () => {
   const context = useContext(CarsContext);
   return (
     <section className={styles.container}>
-      <ButtonPrev />
-
+      <ButtonPrev onClick={() => context.prevCar()} />
       {context.cars.map((car, index) => {
         return (
           index === context.indexCenterCar && (
-            <img
-              key={car.id}
-              className={styles.container__img}
-              src={car.photo.url}
-              alt="current-car"
-            ></img>
+            <div key={car.id} className={styles.wrapper}>
+              <img
+                className={styles.container__img}
+                src={car.photo.url}
+                alt="current-car"
+              ></img>
+              <Link className={styles.link} to="/cars">
+                <Button
+                  onClick={() =>
+                    context.handleShowCar(
+                      car.id,
+                      car.model,
+                      car.year,
+                      car.oilengine,
+                      car.oilgearbox,
+                      car.breakfluid,
+                      car.airfilter,
+                      car.fuelfilter,
+                      car.cabinfilter,
+                      car.photo
+                    )
+                  }
+                  text="More about this car"
+                />
+              </Link>
+            </div>
           )
         );
       })}
 
-      <ButtonNext />
-
-      <Button text="more about the car" />
+      <ButtonNext onClick={() => context.nextCar()} />
     </section>
   );
 };
