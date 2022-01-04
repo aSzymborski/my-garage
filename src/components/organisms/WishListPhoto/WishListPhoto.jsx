@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
-
 import { WishListContext } from 'providers/WishListProvider';
 import car from 'assets/car.svg';
 
 import styles from 'components/organisms/WishListPhoto/WishListPhoto.module.scss';
-
 export const WishListPhoto = () => {
   const context = useContext(WishListContext);
   return (

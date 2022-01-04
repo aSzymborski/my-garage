@@ -14,7 +14,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 3;
 }
 
 .popupInner {
@@ -24,10 +25,11 @@
   align-items: center;
   justify-content: center;
   border-radius: 25px;
-  background-color: white;
-  padding: 2rem 2rem;
+  background-color: #777272;
+  padding: 2rem 3rem;
+  flex-shrink: 1;
   @include breakpoints(mobile) {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
   }
 }
 
@@ -39,8 +41,8 @@
 
 .buttonClose {
   position: absolute;
-  top: 5%;
-  right: 5%;
+  top: 3%;
+  right: 3%;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -57,6 +59,7 @@
 
 .h3 {
   margin-top: 1rem;
+  color: black;
 }
 
 .progressDiv {
@@ -66,7 +69,6 @@
   height: 1.5rem;
   border-radius: 20px;
   margin: 1rem 0;
-  // padding: 0.2rem;
 }
 
 .fillDiv {
@@ -82,6 +84,7 @@
     rgba(124, 90, 6, 1) 15%,
     rgba(233, 179, 43, 1) 88%
   );
+  color: black;
 }
 
 .progress {

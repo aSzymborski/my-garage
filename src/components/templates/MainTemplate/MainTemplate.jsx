@@ -5,9 +5,10 @@ import { HomePage } from '../HomePage/HomePage';
 import { CarsPage } from '../CarsPage/CarsPage';
 import { WishListPage } from '../WishListPage/WishListPage';
 import { WishListProvider } from 'providers/WishListProvider';
-import styles from 'components/templates/MainTemplate/MainTemplate.module.scss';
 import { MobileNavigation } from 'components/organisms/MobileNavigation/MobileNavigation';
 import { CarsProvider } from 'providers/CarsProvider';
+
+import styles from 'components/templates/MainTemplate/MainTemplate.module.scss';
 export const MainTemplate = () => {
   return (
     <div className={styles.container}>

@@ -7,10 +7,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 3rem 1rem 3rem;
-  overflow: scroll;
+  margin: 0 2rem 1rem 2rem;
+  overflow-y: scroll;
   @include breakpoints(mobile) {
-    padding: 2rem 1rem;
+    margin: 2rem 0.8rem;
     height: 100vh;
   }
 }

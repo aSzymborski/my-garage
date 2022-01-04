@@ -9,10 +9,10 @@
   align-items: center;
   justify-content: center;
   overflow-x: hidden;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   @include breakpoints(mobile) {
     justify-content: flex-start;
-    padding: 2rem 1rem;
+    margin: 2rem 0.8rem;
     height: 100vh;
   }
 }

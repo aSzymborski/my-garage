@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
+
 import styles from 'components/organisms/Navigation/Navigation.module.scss';
 export const Navigation = () => {
   return (
@@ -12,14 +12,14 @@ export const Navigation = () => {
       <ul className={styles.list}>
         <li className={styles.list__item}>
           <Link to="/cars">
-            <p>Cars</p>
+            <p className={styles.list__item__p}>Cars</p>
             <div className={styles.fillDiv}></div>
           </Link>
         </li>
 
         <li className={styles.list__item}>
           <Link to="/wishlist">
-            <p>Wishlist</p>
+            <p className={styles.list__item__p}>Wishlist</p>
             <div className={styles.fillDiv}></div>
           </Link>
         </li>

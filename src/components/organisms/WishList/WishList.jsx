@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { WishListContext } from 'providers/WishListProvider';
-import otomoto from 'assets/otomoto.png';
 import { BsPlusCircle } from 'react-icons/bs';
 import { AiOutlineDelete } from 'react-icons/ai';
+import otomoto from 'assets/otomoto.png';
+
 import styles from 'components/organisms/WishList/WishList.module.scss';
 export const WishList = () => {
   const context = useContext(WishListContext);
@@ -20,7 +21,7 @@ export const WishList = () => {
             >
               <img className={styles.img} src={car.photo} alt="car" />
               <div className={styles.wrapper}>
-                <p>{car.model}</p>
+                <p className={styles.wrapper__p}>{car.model}</p>
                 <a
                   className={styles.wrapper__a}
                   href={car.link}
@@ -52,11 +53,12 @@ export const WishList = () => {
           </p>
         )}
       </ul>
+
       <button
         onClick={() => context.togglePopup()}
         className={styles.buttonAdd}
       >
-        <BsPlusCircle size={40} />
+        <BsPlusCircle size={40} color="#e9b32b" />
       </button>
     </section>
   );

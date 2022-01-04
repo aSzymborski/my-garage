@@ -3,9 +3,9 @@ import { Button } from 'components/atoms/Button/Button';
 import { ButtonPrev } from 'components/atoms/ButtonPrev/ButtonPrev';
 import { ButtonNext } from 'components/atoms/ButtonNext/ButtonNext';
 import { CarsContext } from 'providers/CarsProvider';
+import { Link } from 'react-router-dom';
 
 import styles from 'components/organisms/HomePageCurrentPhoto/HomePageCurrentPhoto.module.scss';
-import { Link } from 'react-router-dom';
 export const HomePageCurrentPhoto = () => {
   const context = useContext(CarsContext);
   return (

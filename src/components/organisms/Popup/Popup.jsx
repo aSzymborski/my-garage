@@ -26,15 +26,27 @@ export const Popup = () => {
             type="text"
             name="model"
             register={register}
+            placeholder="Enter the car model"
           />
-          <FormField label="Link" type="text" name="link" register={register} />
+          <FormField
+            label="Link"
+            type="text"
+            name="link"
+            register={register}
+            placeholder="Enter the car link"
+          />
 
           <FormField
             label="Photo"
             type="file"
             name="photo"
             register={register}
-            style={{ border: 'none', padding: '2' }}
+            style={{
+              border: 'none',
+              padding: '2',
+              background: 'transparent',
+              cursor: 'pointer',
+            }}
           />
         </form>
 
@@ -57,8 +69,6 @@ export const Popup = () => {
           </div>
         </div>
 
-        {/* <span className={styles.progress}>{context.progress}%</span> */}
-
         <Button
           text="Add car"
           onClick={() => {
@@ -68,8 +78,9 @@ export const Popup = () => {
 
         <button
           onClick={() => {
-            context.togglePopup();
             context.setProgress(0);
+            context.setWishListCarPhoto(null);
+            context.togglePopup();
           }}
           className={styles.buttonClose}
         >

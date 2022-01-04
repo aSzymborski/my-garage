@@ -49,8 +49,8 @@ export const WishListProvider = ({ children }) => {
   }, []);
 
   const getWishlist = async () => {
-    const wishListCol = collection(db, 'wishlist');
-    const docRef = await getDocs(wishListCol);
+    const wishlistCol = collection(db, 'wishlist');
+    const docRef = await getDocs(wishlistCol);
     const currentWishlist = docRef.docs.map((doc) => doc.data());
 
     if (currentWishlist.length >= 1) {
@@ -78,13 +78,13 @@ export const WishListProvider = ({ children }) => {
       photo: wishListCarUrl,
     })
       .then(() => {
-        alert('data added successfully');
+        alert('car added successfully');
         getWishlist();
         setIsOpen(!isOpen);
         setProgress(0);
       })
       .catch((error) => {
-        alert('Unsucccessuful operation, error:' + error);
+        alert('Unsucccessuful' + error);
       });
   };
 

@@ -8,6 +8,9 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  animation: appear 0.3s 0.1s forwards;
+  margin-left: 2rem;
   @include breakpoints(mobile) {
     display: none;
   }
@@ -25,5 +28,4 @@
   border-radius: 25px;
   max-width: 100%;
   max-height: 100%;
-  margin-left: 3rem;
 }

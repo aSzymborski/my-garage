@@ -1,7 +1,7 @@
 import React from 'react';
+import { HamburgerButton } from 'components/atoms/HamburgerButton/HamburgerButton';
 
 import styles from 'components/organisms/MobileHeader/MobileHeader.module.scss';
-import { HamburgerButton } from 'components/atoms/HamburgerButton/HamburgerButton';
 export const MobileHeader = ({ text }) => {
   return (
     <header className={styles.container}>
