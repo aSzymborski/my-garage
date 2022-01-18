@@ -32,6 +32,12 @@ export const WishListContext = React.createContext({
   setProgress: () => {},
   wishListCarUrl: '',
   setWishListCarUrl: () => {},
+  success: '',
+  setSuccess: () => {},
+  error: '',
+  setError: () => {},
+  errorValue: '',
+  setErrorValue: () => {},
 });
 
 export const WishListProvider = ({ children }) => {
@@ -43,6 +49,9 @@ export const WishListProvider = ({ children }) => {
   const [wishListCarPhoto, setWishListCarPhoto] = useState(null);
   const [wishListCarUrl, setWishListCarUrl] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorValue, setErrorValue] = useState('');
 
   useEffect(() => {
     getWishlist();
@@ -78,13 +87,18 @@ export const WishListProvider = ({ children }) => {
       photo: wishListCarUrl,
     })
       .then(() => {
-        alert('car added successfully');
+        setSuccess(true);
         getWishlist();
         setIsOpen(!isOpen);
         setProgress(0);
       })
       .catch((error) => {
-        alert('Unsucccessuful' + error);
+        setErrorValue(error) &&
+          setError(true).then(() => {
+            setTimeout(() => {
+              setError(false);
+            }, 3000);
+          });
       });
   };
 
@@ -102,8 +116,10 @@ export const WishListProvider = ({ children }) => {
       wishListCarPhoto === null ||
       wishListCarModel === null ||
       wishListCarLink === null
-    )
+    ) {
       return;
+    }
+
     const storageRef = ref(storage, `/images/${wishListCarPhoto.name}`);
     const uploadTask = uploadBytesResumable(storageRef, wishListCarPhoto);
 
@@ -123,9 +139,7 @@ export const WishListProvider = ({ children }) => {
     );
   };
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  };
+  const togglePopup = () => setIsOpen((prevState) => !prevState);
 
   const handleShowCar = (model, link, photo) => {
     const newCurrentCar = {
@@ -158,6 +172,12 @@ export const WishListProvider = ({ children }) => {
         progress,
         setProgress,
         getWishlist,
+        success,
+        setSuccess,
+        error,
+        setError,
+        errorValue,
+        setErrorValue,
       }}
     >
       {children}

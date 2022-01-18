@@ -39,6 +39,7 @@ export const WishList = () => {
                 className={styles.buttonDelete}
                 onClick={() => {
                   context.deleteCar();
+                  context.setSuccess(false);
                 }}
               >
                 <AiOutlineDelete size={20} />
@@ -55,7 +56,10 @@ export const WishList = () => {
       </ul>
 
       <button
-        onClick={() => context.togglePopup()}
+        onClick={() => {
+          context.togglePopup();
+          context.setSuccess(false);
+        }}
         className={styles.buttonAdd}
       >
         <BsPlusCircle size={40} color="#e9b32b" />

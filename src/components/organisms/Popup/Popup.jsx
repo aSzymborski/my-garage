@@ -72,7 +72,11 @@ export const Popup = () => {
         <Button
           text="Add car"
           onClick={() => {
-            context.addCar();
+            context.addCar().then(() => {
+              setTimeout(() => {
+                context.setSuccess(false);
+              }, 2000);
+            });
           }}
         />
 

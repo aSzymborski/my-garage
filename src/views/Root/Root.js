@@ -1,4 +1,5 @@
 import { MainTemplate } from 'components/templates/MainTemplate/MainTemplate';
+
 function Root() {
   return (
     <>

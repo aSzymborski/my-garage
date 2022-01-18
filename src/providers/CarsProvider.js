@@ -3,35 +3,47 @@ import axios from 'axios';
 
 export const CarsContext = React.createContext({
   cars: [],
+  setCars: () => {},
   currentCar: {},
   handleShowCar: () => {},
-  indexCenterCar: '',
-  indexPrevCar: '',
-  indexNextCar: '',
   prevCar: () => {},
   nextCar: () => {},
+  activeIdx: '',
+  setActiveIdx: () => {},
+  sliderStyle: () => {},
 });
+
 const API_TOKEN = '2ff6e0302d3bde8a84b0fe0e42e7a0';
 
 export const CarsProvider = ({ children }) => {
   const [cars, setCars] = useState([]);
   const [currentCar, setCurrentCar] = useState();
-  const [indexCenterCar, setIndexCenterCar] = useState(0);
-  const [indexPrevCar, setIndexPrevCar] = useState(5);
-  const [indexNextCar, setIndexNextCar] = useState(1);
-
-  const length = cars.length;
+  const [activeIdx, setActiveIdx] = useState(0);
 
   const nextCar = () => {
-    setIndexCenterCar(indexCenterCar === length - 1 ? 0 : indexCenterCar + 1);
-    setIndexNextCar(indexNextCar === length - 1 ? 0 : indexNextCar + 1);
-    setIndexPrevCar(indexPrevCar === length - 1 ? 0 : indexPrevCar + 1);
+    setActiveIdx((prevState) => {
+      if (prevState + 1 <= cars.length - 1) {
+        return prevState + 1;
+      }
+
+      return prevState;
+    });
   };
 
   const prevCar = () => {
-    setIndexCenterCar(indexCenterCar === 0 ? length - 1 : indexCenterCar - 1);
-    setIndexNextCar(indexNextCar === 0 ? length - 1 : indexNextCar - 1);
-    setIndexPrevCar(indexPrevCar === 0 ? length - 1 : indexPrevCar - 1);
+    setActiveIdx((prevState) => {
+      if (prevState - 1 >= 0) {
+        return prevState - 1;
+      }
+
+      return prevState;
+    });
+  };
+
+  const sliderStyle = () => {
+    return {
+      transform: `translateX(-${activeIdx * window.innerWidth}px)`,
+    };
   };
 
   useEffect(() => {
@@ -116,11 +128,11 @@ export const CarsProvider = ({ children }) => {
         cars,
         handleShowCar,
         currentCar,
-        indexCenterCar,
-        indexNextCar,
-        indexPrevCar,
         prevCar,
         nextCar,
+        activeIdx,
+        setActiveIdx,
+        sliderStyle,
       }}
     >
       {children}

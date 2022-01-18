@@ -19,11 +19,11 @@
     left: 14%;
   }
   @include breakpoints(mobile) {
-    top: 86%;
+    top: 35%;
     left: 6%;
   }
   @include breakpoints(tablet) {
-    top: 40%;
-    left: 0;
+    top: 20%;
+    left: 1.5rem;
   }
 }
