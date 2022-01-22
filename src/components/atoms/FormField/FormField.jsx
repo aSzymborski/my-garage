@@ -31,5 +31,5 @@ FormField.propTypes = {
   name: PropTypes.string,
   register: PropTypes.func,
   placeholder: PropTypes.string,
-  style: PropTypes.string,
+  style: PropTypes.object,
 };

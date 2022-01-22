@@ -10,7 +10,7 @@
   z-index: 9999;
   cursor: pointer;
   @include breakpoints(largescreens) {
-    right: 1%;
+    right: 7%;
   }
   @include breakpoints(desktop) {
     right: 6%;

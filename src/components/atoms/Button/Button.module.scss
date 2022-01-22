@@ -1,7 +1,15 @@
+@use '/src/styles/variables' as *;
+@use '/src/styles/mixings' as *;
+@use '/src/styles/animations' as *;
+
 .button {
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 10rem;
   border-radius: 20px;
   border: none;
   background-color: #e9b32b;
   cursor: pointer;
+
+  @include breakpoints(mobile) {
+    padding: 0.5rem 3rem;
+  }
 }
