@@ -11,13 +11,13 @@ export const MobileNavigation = () => {
   return (
     <nav className={styles.container}>
       <Link to="/">
-        <AiOutlineHome size={28} />
+        <AiOutlineHome size={28} color="white" />
       </Link>
       <Link to="/cars">
-        <AiOutlineCar size={28} />
+        <AiOutlineCar size={28} color="white" />
       </Link>
       <Link to="/wishlist">
-        <AiOutlineShoppingCart size={28} />
+        <AiOutlineShoppingCart size={28} color="white" />
       </Link>
     </nav>
   );

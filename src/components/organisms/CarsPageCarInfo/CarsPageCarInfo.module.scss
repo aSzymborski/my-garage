@@ -21,6 +21,7 @@
     font-size: 60px;
     font-weight: 700;
     margin: 0 0 0.5rem 0;
+    color: white;
     @include breakpoints(mobile) {
       font-size: 30px;
       margin: 0 0 0.2rem 0;
@@ -31,6 +32,7 @@
     font-size: 50px;
     font-weight: 600;
     margin: 0;
+    color: white;
     @include breakpoints(mobile) {
       font-size: 20px;
     }
@@ -55,6 +57,7 @@
     flex-direction: column;
     align-items: flex-start;
     &__p {
+      color: white;
       font-weight: 700;
     }
   }
@@ -73,4 +76,8 @@
   max-height: 100%;
   opacity: 0;
   animation: appear 0.3s 0.1s forwards;
+}
+
+span {
+  color: white;
 }

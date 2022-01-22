@@ -17,7 +17,7 @@ const API_TOKEN = '2ff6e0302d3bde8a84b0fe0e42e7a0';
 
 export const CarsProvider = ({ children }) => {
   const [cars, setCars] = useState([]);
-  const [currentCar, setCurrentCar] = useState();
+  const [currentCar, setCurrentCar] = useState({});
   const [activeIdx, setActiveIdx] = useState(0);
 
   const nextCar = () => {

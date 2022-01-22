@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { BiError } from 'react-icons/bi';
 import styles from 'components/molecules/ErrorModal/ErrorModal.module.scss';
 export const ErrorModal = ({ error }) => {
@@ -9,4 +9,8 @@ export const ErrorModal = ({ error }) => {
       <p>Unsucccessuful {error}</p>
     </div>
   );
+};
+
+ErrorModal.propTypes = {
+  error: PropTypes.string,
 };

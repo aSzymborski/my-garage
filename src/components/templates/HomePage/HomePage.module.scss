@@ -3,12 +3,11 @@
 @use '/src/styles/animations' as *;
 
 .container {
-  position: relative;
+  // position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow-x: hidden;
   margin-bottom: 1rem;
   @include breakpoints(mobile) {
     justify-content: flex-start;

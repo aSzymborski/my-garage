@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from 'components/atoms/FormField/FormField.module.scss';
 export const FormField = ({
@@ -22,4 +23,13 @@ export const FormField = ({
       />
     </div>
   );
+};
+
+FormField.propTypes = {
+  label: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  register: PropTypes.func,
+  placeholder: PropTypes.string,
+  style: PropTypes.string,
 };
