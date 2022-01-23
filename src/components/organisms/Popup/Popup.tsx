@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { WishListContext } from 'providers/WishListProvider';
+import { useWishlist } from 'providers/WishListProvider';
 import { FormField } from 'components/atoms/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -9,12 +9,22 @@ import { GrUpload } from 'react-icons/gr';
 import styles from 'components/organisms/Popup/Popup.module.scss';
 export const Popup = () => {
   const { register, handleSubmit } = useForm();
-  const context = useContext(WishListContext);
+  const {
+    setWishListCarLink,
+    setWishListCarPhoto,
+    setWishListCarModel,
+    handleUploadPhoto,
+    progress,
+    setProgress,
+    addCar,
+    setSuccess,
+    togglePopup,
+  } = useWishlist();
 
-  const onSubmit = (data) => {
-    context.setWishListCarModel(data.model);
-    context.setWishListCarLink(data.link);
-    context.setWishListCarPhoto(data.photo[0]);
+  const onSubmit = (data: any) => {
+    setWishListCarModel(data.model);
+    setWishListCarLink(data.link);
+    setWishListCarPhoto(data.photo[0]);
   };
 
   return (
@@ -52,7 +62,7 @@ export const Popup = () => {
 
         <button
           onClick={() => {
-            context.handleUploadPhoto();
+            handleUploadPhoto();
           }}
           className={styles.buttonUpload}
         >
@@ -61,20 +71,17 @@ export const Popup = () => {
         </button>
 
         <div className={styles.progressDiv}>
-          <div
-            style={{ width: `${context.progress}%` }}
-            className={styles.fillDiv}
-          >
-            <span className={styles.progress}>{context.progress}%</span>
+          <div style={{ width: `${progress}%` }} className={styles.fillDiv}>
+            <span className={styles.progress}>{progress}%</span>
           </div>
         </div>
 
         <Button
           text="Add car"
           onClick={() => {
-            context.addCar().then(() => {
+            addCar().then(() => {
               setTimeout(() => {
-                context.setSuccess(false);
+                setSuccess(false);
               }, 2000);
             });
           }}
@@ -82,9 +89,9 @@ export const Popup = () => {
 
         <button
           onClick={() => {
-            context.setProgress(0);
-            context.setWishListCarPhoto(null);
-            context.togglePopup();
+            setProgress(0);
+            setWishListCarPhoto(null);
+            togglePopup();
           }}
           className={styles.buttonClose}
         >

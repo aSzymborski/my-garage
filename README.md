@@ -8,6 +8,7 @@ information on the last mileage of each car's maintenance (e.g. engine oil chang
 # Technology stack:
 
 React,
+TypeScirpt,
 Scss,
 Firebase (db, storage),
 DatoCMS (graphQl),

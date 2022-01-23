@@ -1,11 +1,7 @@
 import { MainTemplate } from 'components/templates/MainTemplate/MainTemplate';
 
 function Root() {
-  return (
-    <>
-      <MainTemplate />
-    </>
-  );
+  return <MainTemplate />;
 }
 
 export default Root;

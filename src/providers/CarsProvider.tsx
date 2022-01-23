@@ -1,23 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { FunctionComponent } from 'react';
 import axios from 'axios';
 
-export const CarsContext = React.createContext({
-  cars: [],
-  setCars: () => {},
-  currentCar: {},
-  handleShowCar: () => {},
-  prevCar: () => {},
-  nextCar: () => {},
-  activeIdx: '',
-  setActiveIdx: () => {},
-  sliderStyle: () => {},
-});
+export const CarsContext = React.createContext<CarsContextData | null>(null);
 
-const API_TOKEN = '2ff6e0302d3bde8a84b0fe0e42e7a0';
+export const CarsProvider: FunctionComponent = ({ children }) => {
+  const value = useProviderCars();
+  return <CarsContext.Provider value={value}>{children}</CarsContext.Provider>;
+};
 
-export const CarsProvider = ({ children }) => {
+export interface ICurrentCar {
+  id: number;
+  model: string;
+  year: string;
+  oilengine: string;
+  oilgearbox: string;
+  breakfluid: string;
+  airfilter: string;
+  fuelfilter: string;
+  cabinfilter: string;
+  photo: string;
+}
+
+export const useProviderCars = () => {
   const [cars, setCars] = useState([]);
-  const [currentCar, setCurrentCar] = useState({});
+  const [currentCar, setCurrentCar] = useState<ICurrentCar | object>();
   const [activeIdx, setActiveIdx] = useState(0);
 
   const nextCar = () => {
@@ -45,6 +52,8 @@ export const CarsProvider = ({ children }) => {
       transform: `translateX(-${activeIdx * window.innerWidth}px)`,
     };
   };
+
+  const API_TOKEN = '2ff6e0302d3bde8a84b0fe0e42e7a0';
 
   useEffect(() => {
     axios
@@ -96,18 +105,18 @@ export const CarsProvider = ({ children }) => {
   }, []);
 
   const handleShowCar = (
-    id,
-    model,
-    year,
-    oilengine,
-    oilgearbox,
-    breakfluid,
-    airfilter,
-    fuelfilter,
-    cabinfilter,
-    photo
+    id: number,
+    model: string,
+    year: string,
+    oilengine: string,
+    oilgearbox: string,
+    breakfluid: string,
+    airfilter: string,
+    fuelfilter: string,
+    cabinfilter: string,
+    photo: string
   ) => {
-    const newCar = {
+    const newCar: object = {
       id,
       model,
       year,
@@ -122,20 +131,28 @@ export const CarsProvider = ({ children }) => {
 
     setCurrentCar(newCar);
   };
-  return (
-    <CarsContext.Provider
-      value={{
-        cars,
-        handleShowCar,
-        currentCar,
-        prevCar,
-        nextCar,
-        activeIdx,
-        setActiveIdx,
-        sliderStyle,
-      }}
-    >
-      {children}
-    </CarsContext.Provider>
-  );
+
+  return {
+    cars,
+    setCars,
+    currentCar,
+    setCurrentCar,
+    activeIdx,
+    setActiveIdx,
+    nextCar,
+    prevCar,
+    sliderStyle,
+    handleShowCar,
+  };
+};
+
+type CarsContextData = ReturnType<typeof useProviderCars>;
+
+export const useCars = () => {
+  const cars = useContext(CarsContext);
+  if (!cars) {
+    throw new Error('useCars must be used inside CarsProvider');
+  }
+
+  return cars;
 };

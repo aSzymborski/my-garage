@@ -1,25 +1,25 @@
-import React, { useContext } from 'react';
-import { CarsContext } from 'providers/CarsProvider';
-
-import styles from 'components/organisms/Slider/Slider.module.scss';
+import React from 'react';
+import { useCars } from 'providers/CarsProvider';
 import { ButtonPrev } from 'components/atoms/ButtonPrev/ButtonPrev';
 import { ButtonNext } from 'components/atoms/ButtonNext/ButtonNext';
 import { Button } from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
-export const Slider = () => {
-  const context = useContext(CarsContext);
+
+import styles from 'components/organisms/Slider/Slider.module.scss';
+export const Slider: React.FC = () => {
+  const { prevCar, nextCar, sliderStyle, cars, handleShowCar } = useCars();
   return (
     <div className={styles.wrapper}>
-      <ButtonPrev onClick={() => context.prevCar()} />
-      <ButtonNext onClick={() => context.nextCar()} />
-      <div className={styles.slider} style={context.sliderStyle()}>
-        {context.cars.map((car) => (
+      <ButtonPrev onClick={() => prevCar()} />
+      <ButtonNext onClick={() => nextCar()} />
+      <div className={styles.slider} style={sliderStyle()}>
+        {cars.map((car: any) => (
           <div key={car.id} className={styles.slide}>
             <img src={car.photo.url} alt="car" />
             <Link className={styles.link} to="/cars">
               <Button
                 onClick={() =>
-                  context.handleShowCar(
+                  handleShowCar(
                     car.id,
                     car.model,
                     car.year,

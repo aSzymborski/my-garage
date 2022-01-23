@@ -1,21 +1,21 @@
-import React, { useContext } from 'react';
-import { WishListContext } from 'providers/WishListProvider';
+import React from 'react';
+import { useWishlist } from 'providers/WishListProvider';
 import { BsPlusCircle } from 'react-icons/bs';
 import { AiOutlineDelete } from 'react-icons/ai';
 import otomoto from 'assets/otomoto.png';
 
 import styles from 'components/organisms/WishList/WishList.module.scss';
 export const WishList = () => {
-  const context = useContext(WishListContext);
+  const { wishlist, handleShowCar, deleteCar, setSuccess, togglePopup } =
+    useWishlist();
+
   return (
     <section className={styles.container}>
       <ul className={styles.list}>
-        {context.wishlist.length >= 1 ? (
-          context.wishlist.map((car) => (
+        {wishlist.length >= 1 ? (
+          wishlist.map((car) => (
             <li
-              onMouseOver={() =>
-                context.handleShowCar(car.model, car.link, car.photo)
-              }
+              onMouseOver={() => handleShowCar(car.model, car.link, car.photo)}
               key={car.model}
               className={styles.list__item}
             >
@@ -38,8 +38,8 @@ export const WishList = () => {
               <button
                 className={styles.buttonDelete}
                 onClick={() => {
-                  context.deleteCar();
-                  context.setSuccess(false);
+                  deleteCar();
+                  setSuccess(false);
                 }}
               >
                 <AiOutlineDelete size={20} />
@@ -57,8 +57,8 @@ export const WishList = () => {
 
       <button
         onClick={() => {
-          context.togglePopup();
-          context.setSuccess(false);
+          togglePopup();
+          setSuccess(false);
         }}
         className={styles.buttonAdd}
       >
